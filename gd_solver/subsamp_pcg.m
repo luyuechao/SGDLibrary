@@ -154,8 +154,8 @@ function [w, infos] = subsamp_pcg(problem, options)
         grad = problem.full_grad(w);    
         
         % step 2: calculate H*dirct = (-g)
-        %tol = 1e-5; % relative tol for pcg
-        tol = min(0.1/iter, norm(grad));
+        tol = 1e-6; % relative tol for pcg
+        %tol = min(0.1/iter, norm(grad));
         fprintf('CG tol = %.4e\n',tol);
         %[dirct, pcg_iter] = problem.hv_pcg(w, -grad, dirct, tol);
         [dirct, pcg_iter] = problem.subSamp_hv_pcg(w, 1:n, -grad, dirct, tol);
